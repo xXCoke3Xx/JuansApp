@@ -18,6 +18,9 @@ public class Conexionsql {
        private String servidor = "jdbc:mysql://10.10.220.83:3306/juansap";
        private String user = "userjuansap";
        private String pass = "123456";
+       private String usuario;
+       private String mensaje;
+       private String linea;
     
     
     /*public void basededatos() throws SQLException{
@@ -46,13 +49,53 @@ public class Conexionsql {
     }
         public void leermensajes() throws ClassNotFoundException, SQLException{ 
             
-         Class.forName(driver);
+         /*Class.forName(driver);
          cargarConexion();
          String sql ="" ;
          
-         connection.close();
+         connection.close();*/
+         try{
+            String select = "Select * from mensajes";
+             
+            Class.forName(driver);
+            cargarConexion();
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(select);
+            while(rs.next()){
+                usuario = rs.getString("Nombre");
+                mensaje = rs.getString("Mensaje");
+                linea = usuario + ": " + mensaje;
+                System.out.println(linea);
+            }
+             
+         }catch(Exception e){
+             e.printStackTrace();
+         }
+         
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
     
+    public String getLinea() {
+        return linea;
+    }
 
+    public void setLinea(String linea) {
+        this.linea = linea;
+    }
 
 }
