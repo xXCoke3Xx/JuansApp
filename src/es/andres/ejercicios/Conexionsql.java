@@ -6,6 +6,7 @@
 package es.andres.ejercicios;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -47,7 +48,8 @@ public class Conexionsql {
          
          connection.close();
     }
-        public void leermensajes() throws ClassNotFoundException, SQLException{ 
+    ArrayList<String> listaMensajes = new ArrayList<String>();
+        public ArrayList<String> leermensajes() throws ClassNotFoundException, SQLException{ 
             
          /*Class.forName(driver);
          cargarConexion();
@@ -65,13 +67,12 @@ public class Conexionsql {
                 usuario = rs.getString("Nombre");
                 mensaje = rs.getString("Mensaje");
                 linea = usuario + ": " + mensaje;
-                System.out.println(linea);
+                listaMensajes.add(linea);
             }
-             
          }catch(Exception e){
              e.printStackTrace();
          }
-         
+         return listaMensajes;
     }
 
     public String getUsuario() {
