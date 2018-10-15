@@ -37,7 +37,7 @@ public class Conexionsql {
          Class.forName(driver);
          cargarConexion();
          
-         String sqlselect = "INSERT INTO mensajes (Nombre, Mensajes) VALUES ('" + x + "' , '" + y + " );";
+         String sqlselect = "INSERT INTO mensajes (Nombre, Mensaje) VALUES ('" + x + "' , '" + y + "' );";
          Statement st = connection.createStatement();
          st.executeUpdate(sqlselect);
 	 st.close();
