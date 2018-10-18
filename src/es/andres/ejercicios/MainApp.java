@@ -6,6 +6,7 @@
 package es.andres.ejercicios;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +21,8 @@ public class MainApp extends javax.swing.JFrame {
      */
     public MainApp() {
          initComponents();
+         
+         
 
     }
 
@@ -121,8 +124,14 @@ public class MainApp extends javax.swing.JFrame {
 
     private void bRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRefrescarActionPerformed
         try {
+            jTMensajes.setText("");
             Conexionsql sql = new Conexionsql();
-            sql.leermensajes();
+            ArrayList<String> mensaje = new ArrayList<>();
+            mensaje = sql.leermensajes();
+            for (String string : mensaje) {
+                jTMensajes.append(string);
+                jTMensajes.append("\n");
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

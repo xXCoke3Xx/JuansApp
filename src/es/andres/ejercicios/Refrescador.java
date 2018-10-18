@@ -5,12 +5,16 @@
  */
 package es.andres.ejercicios;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Coke
  */
 public class Refrescador extends Thread{
-    boolean isAliva = true;
+   // boolean isAliva = true;
     
     public Refrescador(){
         Conexionsql sql = new Conexionsql();
@@ -18,8 +22,23 @@ public class Refrescador extends Thread{
     
     @Override
     public void run(){
-        while(isAlive){
+        //while(isAlive){
+        
+        try {
+            Conexionsql sql = new Conexionsql();
+            int contador = 0;
+            while(contador>0){
+                sleep(10);
+                sql.leermensajes();
+            }
             
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Refrescador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Refrescador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Refrescador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
